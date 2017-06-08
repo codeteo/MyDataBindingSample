@@ -2,6 +2,8 @@ package com.data.binding.dagger;
 
 import com.data.binding.utils.BaseUrlInterceptor;
 import com.data.binding.utils.NetworkScope;
+import com.data.binding.utils.schedulers.BaseSchedulerProvider;
+import com.data.binding.utils.schedulers.SchedulerProvider;
 import com.google.gson.Gson;
 
 import java.util.concurrent.TimeUnit;
@@ -58,6 +60,12 @@ public class NetworkModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
+    }
+
+    @Provides
+    @NetworkScope
+    BaseSchedulerProvider baseSchedulerProvider() {
+        return SchedulerProvider.getInstance();
     }
 
 }

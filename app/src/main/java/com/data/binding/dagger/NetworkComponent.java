@@ -2,6 +2,7 @@ package com.data.binding.dagger;
 
 
 import com.data.binding.utils.NetworkScope;
+import com.data.binding.utils.schedulers.BaseSchedulerProvider;
 
 import dagger.Component;
 import okhttp3.OkHttpClient;
@@ -18,5 +19,7 @@ public interface NetworkComponent {
     OkHttpClient okHttpClient();
 
     Retrofit retrofit();
+
+    BaseSchedulerProvider baseScheduler();
 
 }
