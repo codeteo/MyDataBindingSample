@@ -1,9 +1,11 @@
 package com.data.binding.main;
 
-import android.content.Context;
 import android.databinding.ObservableField;
+import android.support.annotation.NonNull;
 
 import com.data.binding.domain.entities.User;
+
+import javax.inject.Inject;
 
 /**
  * ViewModel layer between View and Model. Binds to the View and reacts to events.
@@ -15,15 +17,13 @@ public class ViewModel implements GetUserCallback {
     public final ObservableField<String> city = new ObservableField<>();
     public final ObservableField<Integer> age = new ObservableField<>();
 
-    private Model model;
+    @NonNull
+    private MainModel model;
 
-    private final Context context; //  to avoid leaks this must be an Application Context
-
-    public ViewModel(Context context) {
-        this.context = context.getApplicationContext(); // force use of Application context
-        this.model = new Model();
+    @Inject
+    public ViewModel(@NonNull MainModel model) {
+        this.model = model;
     }
-
 
     public void start(String userId) {
         // some over-engineering magic with the model

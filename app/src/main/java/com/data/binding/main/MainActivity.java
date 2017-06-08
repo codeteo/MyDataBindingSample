@@ -2,17 +2,19 @@ package com.data.binding.main;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import com.data.binding.R;
+import com.data.binding.WeatherApplication;
 import com.data.binding.databinding.ActivityMainBinding;
+import com.data.binding.main.dagger.DaggerMainActivityComponent;
 
-import static com.data.binding.utils.Preconditions.checkNotNull;
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ViewModel viewModel;
+    @Inject
+    ViewModel viewModel;
 
     private String someUserId = "14";
 
@@ -21,15 +23,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        setViewModel(new ViewModel(this));
+        DaggerMainActivityComponent.builder()
+                .networkComponent(WeatherApplication.getNetworkComponent())
+                .build()
+                .inject(this);
 
         binding.setViewModel(viewModel);
 
         viewModel.start(someUserId);
     }
 
+/*
     public void setViewModel(@NonNull ViewModel viewModel) {
         this.viewModel = checkNotNull(viewModel);
     }
+*/
 
 }

@@ -18,7 +18,8 @@ import okhttp3.HttpUrl;
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
 
-    // exposed dependencies to other modules
+    /** exposed dependencies to downstream components (e.g. NetworkComponent) **/
+
     Application getApplication();
 
     SharedPreferences getSharedPreferences();

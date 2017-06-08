@@ -6,7 +6,7 @@ import com.data.binding.domain.entities.User;
  * Model layer containing business logic.
  */
 
-public class Model {
+public class Model implements MainModel{
 
     public Model() {
     }

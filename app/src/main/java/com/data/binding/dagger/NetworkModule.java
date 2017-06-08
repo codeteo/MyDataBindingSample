@@ -1,7 +1,7 @@
 package com.data.binding.dagger;
 
 import com.data.binding.utils.BaseUrlInterceptor;
-import com.data.binding.utils.MainActivityScope;
+import com.data.binding.utils.NetworkScope;
 import com.google.gson.Gson;
 
 import java.util.concurrent.TimeUnit;
@@ -28,13 +28,13 @@ public class NetworkModule {
     }
 
     @Provides
-    @MainActivityScope
+    @NetworkScope
     Gson providesGson() {
         return new Gson();
     }
 
     @Provides
-    @MainActivityScope
+    @NetworkScope
     OkHttpClient providesOkHttpClient(BaseUrlInterceptor baseUrlInterceptor){
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -50,7 +50,7 @@ public class NetworkModule {
     }
 
     @Provides
-    @MainActivityScope
+    @NetworkScope
     Retrofit providesRetrofit(HttpUrl baseUrl, OkHttpClient client) {
         return new Retrofit.Builder()
                 .client(client)
