@@ -15,6 +15,11 @@ android {
         enabled = true
     }
     buildTypes {
+        buildTypes {
+            applicationVariants.all { variant ->
+                variant.buildConfigField "String", "API_KEY", "\"" + getApiKey() + "\""
+            }
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -22,6 +27,11 @@ android {
     }
 }
 
+def getApiKey(){
+    def Properties props = new Properties()
+    props.load(new FileInputStream(new File('secrets.properties')))
+    return props['API_KEY']
+}
 
 final DAGGER_VERSION = '2.8'
 final RUNNER_VERSION = '0.5'
