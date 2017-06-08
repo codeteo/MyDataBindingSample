@@ -3,7 +3,6 @@ package com.data.binding.main.dagger;
 import com.data.binding.main.Model;
 import com.data.binding.main.ViewModel;
 import com.data.binding.utils.MainActivityScope;
-import com.data.binding.utils.schedulers.BaseSchedulerProvider;
 
 import dagger.Module;
 import dagger.Provides;
@@ -27,8 +26,8 @@ public class MainActivityModule {
 
     @MainActivityScope
     @Provides
-    ViewModel providesViewModel(Model model, BaseSchedulerProvider baseScheduler) {
-        return new ViewModel(model, baseScheduler);
+    ViewModel providesViewModel(Model model) {
+        return new ViewModel(model);
     }
 
 }

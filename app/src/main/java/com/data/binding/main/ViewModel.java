@@ -4,7 +4,6 @@ import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
 import com.data.binding.domain.entities.User;
-import com.data.binding.utils.schedulers.BaseSchedulerProvider;
 
 import javax.inject.Inject;
 
@@ -21,13 +20,9 @@ public class ViewModel implements GetUserCallback {
     @NonNull
     private MainModel model;
 
-    @NonNull
-    private BaseSchedulerProvider baseScheduler;
-
     @Inject
-    public ViewModel(@NonNull MainModel model, @NonNull BaseSchedulerProvider baseScheduler) {
+    public ViewModel(@NonNull MainModel model) {
         this.model = model;
-        this.baseScheduler = baseScheduler;
     }
 
     public void start(String userId) {

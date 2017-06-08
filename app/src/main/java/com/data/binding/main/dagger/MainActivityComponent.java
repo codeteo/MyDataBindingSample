@@ -11,7 +11,7 @@ import dagger.Component;
  */
 
 @MainActivityScope
-@Component(dependencies = NetworkComponent.class, modules = MainActivityModule.class)
+@Component(dependencies = NetworkComponent.class, modules = {MainActivityModule.class, WeatherModule.class})
 public interface MainActivityComponent {
 
     void inject(MainActivity mainActivity);
