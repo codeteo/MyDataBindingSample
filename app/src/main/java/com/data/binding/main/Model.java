@@ -1,7 +1,9 @@
-package com.data.binding;
+package com.data.binding.main;
+
+import com.data.binding.domain.entities.User;
 
 /**
- * Created by css on 6/7/17.
+ * Model layer containing business logic.
  */
 
 public class Model {

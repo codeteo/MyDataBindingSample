@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="viewModel" type="com.data.binding.ViewModel"/>
+        <variable name="viewModel" type="com.data.binding.main.ViewModel"/>
     </data>
 
     <LinearLayout

@@ -1,10 +1,12 @@
-package com.data.binding;
+package com.data.binding.main;
 
 import android.content.Context;
 import android.databinding.ObservableField;
 
+import com.data.binding.domain.entities.User;
+
 /**
- * Created by css on 6/7/17.
+ * ViewModel layer between View and Model. Binds to the View and reacts to events.
  */
 
 public class ViewModel implements GetUserCallback {

@@ -1,4 +1,4 @@
-package com.data.binding;
+package com.data.binding.domain.entities;
 
 /**
  * Created by css on 6/7/17.

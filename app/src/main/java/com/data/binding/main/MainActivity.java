@@ -1,10 +1,11 @@
-package com.data.binding;
+package com.data.binding.main;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
+import com.data.binding.R;
 import com.data.binding.databinding.ActivityMainBinding;
 
 import static com.data.binding.utils.Preconditions.checkNotNull;
