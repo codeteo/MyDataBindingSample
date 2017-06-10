@@ -3,7 +3,7 @@ package com.data.binding.main;
 import com.data.binding.domain.entities.User;
 
 /**
- * Created by css on 6/8/17.
+ * Contract defining business logic of {@link MainActivity}
  */
 
 public interface MainModel {

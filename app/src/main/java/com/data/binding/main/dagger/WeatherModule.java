@@ -1,7 +1,7 @@
 package com.data.binding.main.dagger;
 
-import com.data.binding.domain.entities.model.WeatherInteractor;
-import com.data.binding.domain.entities.model.WeatherInteractorImpl;
+import com.data.binding.domain.model.WeatherInteractorImpl;
+import com.data.binding.domain.model.WeatherInteractor;
 import com.data.binding.utils.MainActivityScope;
 import com.data.binding.utils.schedulers.BaseSchedulerProvider;
 import com.data.binding.utils.schedulers.SchedulerProvider;

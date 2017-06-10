@@ -1,8 +1,11 @@
-package com.data.binding.domain.entities.model;
+package com.data.binding.domain.model;
 
 import android.support.annotation.NonNull;
 
+import com.data.binding.domain.entities.CityWeather;
 import com.data.binding.utils.schedulers.BaseSchedulerProvider;
+
+import rx.Observable;
 
 /**
  * This class is an implementation of {@link WeatherInteractor} that represents a use case for
@@ -18,4 +21,13 @@ public class WeatherInteractorImpl implements WeatherInteractor {
         this.schedulerProvider = schedulerProvider;
     }
 
+    @Override
+    public Observable<CityWeather> getWeatherByCityName(String name) {
+        return null;
+    }
+
+    @Override
+    public Observable<CityWeather> getWeatherByCityId(long id) {
+        return null;
+    }
 }
