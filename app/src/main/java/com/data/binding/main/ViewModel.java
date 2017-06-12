@@ -4,6 +4,7 @@ import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
 import com.data.binding.domain.entities.User;
+import com.data.binding.domain.model.WeatherInteractor;
 
 import javax.inject.Inject;
 
@@ -20,14 +21,19 @@ public class ViewModel implements GetUserCallback {
     @NonNull
     private MainModel model;
 
+    @NonNull
+    private WeatherInteractor weatherInteractor;
+
     @Inject
-    public ViewModel(@NonNull MainModel model) {
+    public ViewModel(@NonNull MainModel model, @NonNull WeatherInteractor weatherInteractor) {
         this.model = model;
+        this.weatherInteractor = weatherInteractor;
     }
 
     public void start(String userId) {
         // some over-engineering magic with the model
         model.getUser(userId, this);
+        weatherInteractor.getWeatherByCityName("Thessaloniki");
     }
 
     @Override
