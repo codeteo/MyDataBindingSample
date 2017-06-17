@@ -1,10 +1,12 @@
 package com.data.binding.dagger;
 
+import com.data.binding.utils.AdapterFactory;
 import com.data.binding.utils.BaseUrlInterceptor;
 import com.data.binding.utils.NetworkScope;
 import com.data.binding.utils.schedulers.BaseSchedulerProvider;
 import com.data.binding.utils.schedulers.SchedulerProvider;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
 
@@ -32,7 +34,9 @@ public class NetworkModule {
     @Provides
     @NetworkScope
     Gson providesGson() {
-        return new Gson();
+        return new GsonBuilder()
+                .registerTypeAdapterFactory(AdapterFactory.create())
+                .create();
     }
 
     @Provides
@@ -53,11 +57,11 @@ public class NetworkModule {
 
     @Provides
     @NetworkScope
-    Retrofit providesRetrofit(HttpUrl baseUrl, OkHttpClient client) {
+    Retrofit providesRetrofit(HttpUrl baseUrl, OkHttpClient client, Gson gson) {
         return new Retrofit.Builder()
                 .client(client)
                 .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }

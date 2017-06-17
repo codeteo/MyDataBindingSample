@@ -33,7 +33,8 @@ public class WeatherInteractorImpl implements WeatherInteractor {
     public Observable<CityWeather> getWeatherByCityName(String name) {
         return openWeatherMapApi
                 .getWeatherByCityName(name, apiKey)
-                .subscribeOn(schedulerProvider.io());
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.androidMainThread());
     }
 
     @Override
