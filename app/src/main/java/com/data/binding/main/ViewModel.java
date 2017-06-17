@@ -38,13 +38,16 @@ public class ViewModel implements GetUserCallback {
 
     public void start(String userId) {
         // some over-engineering magic with the model
-        model.getUser(userId, this);
+//        model.getUser(userId, this);
         weatherInteractor
                 .getWeatherByCityName("Thessaloniki")
                 .subscribe(new Action1<CityWeather>() {
                     @Override
                     public void call(CityWeather cityWeather) {
                         Log.i("VIEW-MODEL", "call Do something here");
+
+                        name.set(cityWeather.getWeather().get(0).getDescription());
+
                     }
                 }, new Action1<Throwable>() {
                     @Override
