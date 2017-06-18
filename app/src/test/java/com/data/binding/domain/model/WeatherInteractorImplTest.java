@@ -56,6 +56,17 @@ public class WeatherInteractorImplTest {
 
     @Test
     public void getWeatherByCityName() throws Exception {
+        // when
+        when(openWeatherMapApi.getWeatherByCityName(anyString(), anyString()))
+                .thenReturn(Observable.just(cityWeather()));
+
+        // given
+        TestSubscriber<CityWeather> testSubscriber = new TestSubscriber<>();
+        weatherInteractor.getWeatherByCityName("Los Angeles").subscribe(testSubscriber);
+
+        // then
+        testSubscriber.assertNoErrors();
+        testSubscriber.assertReceivedOnNext(singletonList(cityWeather()));
 
     }
 
