@@ -8,8 +8,6 @@ import com.data.binding.domain.entities.CityWeather;
 import com.data.binding.domain.entities.User;
 import com.data.binding.domain.model.WeatherInteractor;
 
-import java.util.Arrays;
-
 import javax.inject.Inject;
 
 import rx.functions.Action1;
@@ -19,6 +17,8 @@ import rx.functions.Action1;
  */
 
 public class ViewModel implements GetUserCallback {
+
+    public static final String TAG = "VIEW-MODEL";
 
     public final ObservableField<String> name = new ObservableField<>();
     public final ObservableField<String> city = new ObservableField<>();
@@ -37,23 +37,19 @@ public class ViewModel implements GetUserCallback {
     }
 
     public void start(String userId) {
-        // some over-engineering magic with the model
-//        model.getUser(userId, this);
         weatherInteractor
                 .getWeatherByCityName("Thessaloniki")
                 .subscribe(new Action1<CityWeather>() {
                     @Override
                     public void call(CityWeather cityWeather) {
-                        Log.i("VIEW-MODEL", "call Do something here");
-
+                        Log.i(TAG, "call Do something here");
                         name.set(cityWeather.getWeather().get(0).getDescription());
 
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        Log.i("VIEW-MODEL", "call onError : " + throwable.getMessage());
-                        Log.i("VIEW-MODEL", "call onError ST : " + Arrays.toString(throwable.getStackTrace()));
+                        Log.i(TAG, "call onError : " + throwable.getMessage());
                     }
                 });
     }
