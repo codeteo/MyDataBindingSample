@@ -25,18 +25,14 @@ public class ViewModel implements GetUserCallback {
     public final ObservableField<Integer> age = new ObservableField<>();
 
     @NonNull
-    private MainModel model;
-
-    @NonNull
     private WeatherInteractor weatherInteractor;
 
     @Inject
-    public ViewModel(@NonNull MainModel model, @NonNull WeatherInteractor weatherInteractor) {
-        this.model = model;
+    public ViewModel(@NonNull WeatherInteractor weatherInteractor) {
         this.weatherInteractor = weatherInteractor;
     }
 
-    public void start(String userId) {
+    public void start() {
         weatherInteractor
                 .getWeatherByCityName("Thessaloniki")
                 .subscribe(new Action1<CityWeather>() {

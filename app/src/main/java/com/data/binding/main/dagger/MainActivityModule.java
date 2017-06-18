@@ -18,17 +18,10 @@ public class MainActivityModule {
     public MainActivityModule() {
     }
 
-    /** well basically it's an Interactor and not model **/
     @MainActivityScope
     @Provides
-    Model providesModel() {
-        return new Model();
-    }
-
-    @MainActivityScope
-    @Provides
-    ViewModel providesViewModel(Model model, WeatherInteractor weatherInteractor) {
-        return new ViewModel(model, weatherInteractor);
+    ViewModel providesViewModel(WeatherInteractor weatherInteractor) {
+        return new ViewModel(weatherInteractor);
     }
 
 }
