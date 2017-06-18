@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     ViewModel viewModel;
 
-    private String someUserId = "14";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.setViewModel(viewModel);
 
-        viewModel.start(someUserId);
+        viewModel.start();
     }
 
 /*
