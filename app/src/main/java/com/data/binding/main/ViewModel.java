@@ -12,6 +12,8 @@ import javax.inject.Inject;
 
 import rx.functions.Action1;
 
+import static android.databinding.DynamicUtil.safeUnbox;
+
 /**
  * ViewModel layer between View and Model. Binds to the View and reacts to events.
  */
@@ -54,7 +56,7 @@ public class ViewModel implements GetUserCallback {
     public void onUserLoaded(User user) {
         name.set(user.getName());
         city.set(user.getCity());
-        age.set(user.getAge());
+        age.set(safeUnbox(user.getAge()));
     }
 
     @Override
