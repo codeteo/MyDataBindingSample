@@ -12,8 +12,6 @@ import javax.inject.Inject;
 
 import rx.functions.Action1;
 
-import static android.databinding.DynamicUtil.safeUnbox;
-
 /**
  * ViewModel layer between View and Model. Binds to the View and reacts to events.
  */
@@ -23,8 +21,7 @@ public class ViewModel implements GetUserCallback {
     public static final String TAG = "VIEW-MODEL";
 
     public final ObservableField<String> name = new ObservableField<>();
-    public final ObservableField<String> city = new ObservableField<>();
-    public final ObservableField<Integer> age = new ObservableField<>();
+    public final ObservableField<String> description = new ObservableField<>();
 
     @NonNull
     private WeatherInteractor weatherInteractor;
@@ -41,8 +38,8 @@ public class ViewModel implements GetUserCallback {
                     @Override
                     public void call(CityWeather cityWeather) {
                         Log.i(TAG, "call Do something here");
-                        name.set(cityWeather.getWeather().get(0).getDescription());
-
+                        name.set(cityWeather.getName());
+                        description.set(cityWeather.getWeather().get(0).getDescription());
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -55,8 +52,7 @@ public class ViewModel implements GetUserCallback {
     @Override
     public void onUserLoaded(User user) {
         name.set(user.getName());
-        city.set(user.getCity());
-        age.set(safeUnbox(user.getAge()));
+        description.set(user.getCity());
     }
 
     @Override

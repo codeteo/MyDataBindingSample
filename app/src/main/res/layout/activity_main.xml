@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable name="viewModel" type="com.data.binding.main.ViewModel"/>
     </data>
@@ -20,13 +20,12 @@
 
         <TextView
             android:id="@+id/tv_city"
-            android:text="@{viewModel.city}"
+            android:text="@{viewModel.description}"
             android:layout_width="wrap_content" android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/tv_age"
-            android:text="@{String.valueOf(viewModel.age)}"
-            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/iv_weather_icon"
+            android:layout_width="50dp" android:layout_height="50dp" />
 
     </LinearLayout>
 </layout>
