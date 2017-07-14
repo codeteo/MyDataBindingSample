@@ -25,6 +25,7 @@
 
         <ImageView
             android:id="@+id/iv_weather_icon"
+            app:imageUrl="@{viewModel.icon}" android:contentDescription="@string/content_description_weather_icon"
             android:layout_width="50dp" android:layout_height="50dp" />
 
     </LinearLayout>

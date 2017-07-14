@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyDataBindingSample</string>
+
+    <string name="content_description_weather_icon" translatable="true">weather icon</string>
 </resources>
