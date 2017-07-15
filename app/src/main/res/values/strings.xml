@@ -9,4 +9,9 @@
     <string name="bottom_bar_favorite_title" translatable="true">Favorite</string>
     <string name="bottom_bar_settings_title" translatable="true">Settings</string>
     <!-- bottomBar titles end-->
+
+    <!-- search screen start-->
+    <string name="search_city_hint_edittext">Search City</string>
+    <!-- search screen end-->
+
 </resources>
