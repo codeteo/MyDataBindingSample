@@ -1,4 +1,4 @@
-package com.data.binding.main;
+package com.data.binding.main.fragments.main;
 
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.data.binding.domain.entities.CityWeather;
 import com.data.binding.domain.entities.User;
 import com.data.binding.domain.model.WeatherInteractor;
+import com.data.binding.main.GetUserCallback;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -19,7 +20,7 @@ import rx.functions.Action1;
  * ViewModel layer between View and Model. Binds to the View and reacts to events.
  */
 
-public class ViewModel implements GetUserCallback {
+public class MainViewModel implements GetUserCallback {
 
     private static final String TAG = "VIEW-MODEL";
     private static final String BASE_ICON_URL = "http://openweathermap.org/img/w/";
@@ -32,7 +33,7 @@ public class ViewModel implements GetUserCallback {
     private WeatherInteractor weatherInteractor;
 
     @Inject
-    public ViewModel(@NonNull WeatherInteractor weatherInteractor) {
+    public MainViewModel(@NonNull WeatherInteractor weatherInteractor) {
         this.weatherInteractor = weatherInteractor;
     }
 

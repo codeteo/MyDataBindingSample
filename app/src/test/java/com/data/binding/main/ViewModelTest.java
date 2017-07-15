@@ -4,6 +4,7 @@ import com.data.binding.domain.entities.CityWeather;
 import com.data.binding.domain.entities.Main;
 import com.data.binding.domain.entities.Weather;
 import com.data.binding.domain.model.WeatherInteractor;
+import com.data.binding.main.fragments.main.MainViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +20,7 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 /**
- * Unit tests for {@link ViewModel} class.
+ * Unit tests for {@link MainViewModel} class.
  */
 public class ViewModelTest {
 
@@ -32,13 +33,13 @@ public class ViewModelTest {
     @Mock
     private Weather weather;
 
-    private ViewModel viewModel;
+    private MainViewModel viewModel;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        viewModel = new ViewModel(weatherInteractor);
+        viewModel = new MainViewModel(weatherInteractor);
     }
 
     @Test

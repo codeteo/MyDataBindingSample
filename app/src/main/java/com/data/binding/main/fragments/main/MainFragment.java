@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.data.binding.R;
 import com.data.binding.WeatherApplication;
 import com.data.binding.databinding.FragmentMainBinding;
-import com.data.binding.main.ViewModel;
 import com.data.binding.main.fragments.BaseFragment;
 import com.data.binding.main.fragments.main.dagger.DaggerMainFragmentComponent;
 
@@ -24,7 +23,7 @@ import javax.inject.Inject;
 public class MainFragment extends BaseFragment {
 
     @Inject
-    ViewModel viewModel;
+    MainViewModel viewModel;
 
     public static MainFragment newInstance() {
 
