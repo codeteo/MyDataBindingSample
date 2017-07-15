@@ -2,4 +2,11 @@
     <string name="app_name">MyDataBindingSample</string>
 
     <string name="content_description_weather_icon" translatable="true">weather icon</string>
+
+    <!-- bottomBar titles start-->
+    <string name="bottom_bar_home_title" translatable="true">Home</string>
+    <string name="bottom_bar_search_title" translatable="true">Search</string>
+    <string name="bottom_bar_favorite_title" translatable="true">Favorite</string>
+    <string name="bottom_bar_settings_title" translatable="true">Settings</string>
+    <!-- bottomBar titles end-->
 </resources>
