@@ -1,40 +1,25 @@
 package com.data.binding.main;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.data.binding.R;
-import com.data.binding.WeatherApplication;
-import com.data.binding.databinding.ActivityMainBinding;
-import com.data.binding.main.dagger.DaggerMainActivityComponent;
+import com.data.binding.main.fragments.main.MainFragment;
 
-import javax.inject.Inject;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-
-    @Inject
-    ViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        DaggerMainActivityComponent.builder()
-                .networkComponent(WeatherApplication.getNetworkComponent())
-                .build()
-                .inject(this);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_main_container, MainFragment.newInstance())
+                .commit();
 
-        binding.setViewModel(viewModel);
-
-        viewModel.start();
     }
-
-/*
-    public void setViewModel(@NonNull ViewModel viewModel) {
-        this.viewModel = checkNotNull(viewModel);
-    }
-*/
 
 }

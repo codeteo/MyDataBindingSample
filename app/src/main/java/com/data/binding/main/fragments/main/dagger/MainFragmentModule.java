@@ -1,9 +1,8 @@
-package com.data.binding.main.dagger;
+package com.data.binding.main.fragments.main.dagger;
 
 import com.data.binding.domain.model.WeatherInteractor;
-import com.data.binding.main.Model;
 import com.data.binding.main.ViewModel;
-import com.data.binding.utils.MainActivityScope;
+import com.data.binding.utils.FragmentScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,12 +12,12 @@ import dagger.Provides;
  */
 
 @Module
-public class MainActivityModule {
+public class MainFragmentModule {
 
-    public MainActivityModule() {
+    public MainFragmentModule() {
     }
 
-    @MainActivityScope
+    @FragmentScope
     @Provides
     ViewModel providesViewModel(WeatherInteractor weatherInteractor) {
         return new ViewModel(weatherInteractor);

@@ -1,9 +1,9 @@
-package com.data.binding.main.dagger;
+package com.data.binding.main.fragments.main.dagger;
 
 import com.data.binding.data.OpenWeatherMapApi;
 import com.data.binding.domain.model.WeatherInteractor;
 import com.data.binding.domain.model.WeatherInteractorImpl;
-import com.data.binding.utils.MainActivityScope;
+import com.data.binding.utils.FragmentScope;
 import com.data.binding.utils.schedulers.BaseSchedulerProvider;
 
 import dagger.Module;
@@ -20,13 +20,13 @@ public class WeatherModule {
 
     }
 
-    @MainActivityScope
+    @FragmentScope
     @Provides
     OpenWeatherMapApi providesOpenWeatherMapApi(Retrofit retrofit) {
         return retrofit.create(OpenWeatherMapApi.class);
     }
 
-    @MainActivityScope
+    @FragmentScope
     @Provides
     WeatherInteractor providesWeatherInteractor(BaseSchedulerProvider baseScheduler, OpenWeatherMapApi openWeatherMapApi) {
         return new WeatherInteractorImpl(baseScheduler, openWeatherMapApi);
