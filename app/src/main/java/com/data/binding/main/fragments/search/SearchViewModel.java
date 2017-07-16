@@ -1,5 +1,6 @@
 package com.data.binding.main.fragments.search;
 
+import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -16,7 +17,9 @@ import rx.Observable;
 public class SearchViewModel {
 
     private static final String TAG = "SEARCH-VIEW-MODEL";
-    
+
+    public final ObservableField<String> name = new ObservableField<>();
+
     @NonNull
     private SearchWeatherInteractor searchWeatherInteractor;
 
@@ -33,9 +36,11 @@ public class SearchViewModel {
                 .filter(searchTerm -> searchTerm.length() > 2)
                 .flatMap(searchTerm -> searchWeatherInteractor.getSearchWeatherByCityName(searchTerm))
                 .subscribe(cityWeather -> {
-                    Log.i(TAG, "search name == " + cityWeather.getName());
-                }, throwable -> Log.i(TAG, "search onError == " + throwable.getMessage()));
 
+                    Log.i(TAG, "search name == " + cityWeather.getName());
+                    name.set(cityWeather.getName());
+
+                }, throwable -> Log.i(TAG, "search onError == " + throwable.getMessage()));
 
     }
 
