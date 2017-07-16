@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.data.binding.R;
+import com.data.binding.WeatherApplication;
 import com.data.binding.main.fragments.BaseFragment;
+import com.data.binding.main.fragments.search.dagger.DaggerSearchFragmentComponent;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +29,9 @@ public class SearchFragment extends BaseFragment {
     @BindView(R.id.et_search) EditText etSearchView;
     @BindView(R.id.rv_search) RecyclerView rvResults;
 
+    @Inject
+    SearchViewModel searchViewModel;
+
     public static SearchFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -32,6 +39,17 @@ public class SearchFragment extends BaseFragment {
         SearchFragment fragment = new SearchFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        DaggerSearchFragmentComponent.builder()
+                .networkComponent(WeatherApplication.getNetworkComponent())
+                .build()
+                .inject(this);
+
     }
 
     @Nullable

@@ -1,6 +1,8 @@
 package com.data.binding.main.fragments.main.dagger;
 
 import com.data.binding.data.OpenWeatherMapApi;
+import com.data.binding.domain.model.SearchWeatherInteractor;
+import com.data.binding.domain.model.SearchWeatherInteractorImpl;
 import com.data.binding.domain.model.WeatherInteractor;
 import com.data.binding.domain.model.WeatherInteractorImpl;
 import com.data.binding.utils.FragmentScope;
@@ -30,6 +32,12 @@ public class WeatherModule {
     @Provides
     WeatherInteractor providesWeatherInteractor(BaseSchedulerProvider baseScheduler, OpenWeatherMapApi openWeatherMapApi) {
         return new WeatherInteractorImpl(baseScheduler, openWeatherMapApi);
+    }
+
+    @FragmentScope
+    @Provides
+    SearchWeatherInteractor providesSearchWeatherInteractor(BaseSchedulerProvider baseScheduler, OpenWeatherMapApi openWeatherMapApi) {
+        return new SearchWeatherInteractorImpl(baseScheduler, openWeatherMapApi);
     }
 
 }
