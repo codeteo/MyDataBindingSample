@@ -12,6 +12,7 @@ import com.data.binding.R;
 import com.data.binding.WeatherApplication;
 import com.data.binding.main.fragments.BaseFragment;
 import com.data.binding.main.fragments.search.dagger.DaggerSearchFragmentComponent;
+import com.jakewharton.rxbinding2.widget.RxTextView;
 
 import javax.inject.Inject;
 
@@ -57,6 +58,8 @@ public class SearchFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         ButterKnife.bind(this, view);
+
+        searchViewModel.search(RxTextView.textChanges(etSearchView));
 
         return view;
     }

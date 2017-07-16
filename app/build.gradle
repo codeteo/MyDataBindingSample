@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
@@ -25,6 +26,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 def getApiKey(){
@@ -40,6 +46,7 @@ final SUPPORT_VERSION = '25.3.0'
 final RETROFIT_VERSION = '2.1.0'
 final RXJAVA_VERSION = '1.2.4'
 final RXANDROID_VERSION = '1.2.1'
+final RXBINDINGS_VERSION = '2.0.0'
 final BUTTERKNIFE_VERSION = '8.5.1'
 final BOTTOM_BAR_VERSION = '2.3.1'
 final MOCKITO_VERSION = '1.10.19'
@@ -92,6 +99,7 @@ dependencies {
     compile "io.reactivex:rxandroid:${RXANDROID_VERSION}"
     compile "io.reactivex:rxjava:${RXJAVA_VERSION}"
     compile "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_VERSION}"
+    compile "com.jakewharton.rxbinding2:rxbinding:${RXBINDINGS_VERSION}"
 
     compile 'com.android.support.test.espresso:espresso-idling-resource:2.2.2'
 
