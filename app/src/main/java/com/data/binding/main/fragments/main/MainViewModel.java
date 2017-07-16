@@ -6,15 +6,12 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.data.binding.domain.entities.CityWeather;
 import com.data.binding.domain.entities.User;
 import com.data.binding.domain.model.WeatherInteractor;
 import com.data.binding.main.GetUserCallback;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
-
-import rx.functions.Action1;
 
 /**
  * ViewModel layer between View and Model. Binds to the View and reacts to events.
@@ -40,19 +37,11 @@ public class MainViewModel implements GetUserCallback {
     public void start() {
         weatherInteractor
                 .getWeatherByCityName("Thessaloniki")
-                .subscribe(new Action1<CityWeather>() {
-                    @Override
-                    public void call(CityWeather cityWeather) {
-                        name.set(cityWeather.getName());
-                        description.set(cityWeather.getWeather().get(0).getDescription());
-                        icon.set(createIconUrl(cityWeather.getWeather().get(0).getIcon()));
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        Log.i(TAG, "call onError : " + throwable.getMessage());
-                    }
-                });
+                .subscribe(cityWeather -> {
+                    name.set(cityWeather.getName());
+                    description.set(cityWeather.getWeather().get(0).getDescription());
+                    icon.set(createIconUrl(cityWeather.getWeather().get(0).getIcon()));
+                }, throwable -> Log.i(TAG, "call onError : " + throwable.getMessage()));
     }
 
     @Override

@@ -12,7 +12,7 @@ import com.data.binding.R;
 import com.data.binding.WeatherApplication;
 import com.data.binding.main.fragments.BaseFragment;
 import com.data.binding.main.fragments.search.dagger.DaggerSearchFragmentComponent;
-import com.jakewharton.rxbinding2.widget.RxTextView;
+import com.jakewharton.rxbinding.widget.RxTextView;
 
 import javax.inject.Inject;
 
