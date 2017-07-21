@@ -3,6 +3,8 @@ package com.data.binding.main.fragments.search;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,8 @@ import android.view.ViewGroup;
 import com.data.binding.R;
 import com.data.binding.WeatherApplication;
 import com.data.binding.databinding.FragmentSearchBinding;
+import com.data.binding.domain.entities.CityWeather;
+import com.data.binding.main.adapter.CityWeatherAdapter;
 import com.data.binding.main.fragments.BaseFragment;
 import com.data.binding.main.fragments.search.dagger.DaggerSearchFragmentComponent;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -24,8 +28,12 @@ import javax.inject.Inject;
 
 public class SearchFragment extends BaseFragment {
 
+    private static final String TAG = "SEARCH-FRAGMENT";
+
     @Inject
     SearchViewModel searchViewModel;
+
+    private CityWeatherAdapter adapter;
 
     public static SearchFragment newInstance() {
 
@@ -56,9 +64,32 @@ public class SearchFragment extends BaseFragment {
         View view = binding.getRoot();
 
         binding.setSearchViewModel(searchViewModel);
-        searchViewModel.search(RxTextView.textChanges(binding.etSearch));
+
+        setupAdapter(binding);
+
+        searchViewModel
+                .search(RxTextView.textChanges(binding.etSearch))
+                .subscribe(this::setWeatherList);
 
         return view;
+    }
+
+    private void setupAdapter(FragmentSearchBinding binding) {
+        adapter = new CityWeatherAdapter();
+        binding.rvSearch.setAdapter(adapter);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        binding.rvSearch.setLayoutManager(layoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(),
+                layoutManager.getOrientation());
+        binding.rvSearch.addItemDecoration(dividerItemDecoration);
+    }
+
+    private void setWeatherList(CityWeather cityWeather) {
+        adapter.updateDataset(cityWeather);
+        adapter.notifyDataSetChanged();
     }
 
 }

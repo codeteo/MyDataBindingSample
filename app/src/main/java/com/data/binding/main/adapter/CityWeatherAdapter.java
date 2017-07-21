@@ -1,6 +1,5 @@
 package com.data.binding.main.adapter;
 
-import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -8,7 +7,10 @@ import android.view.ViewGroup;
 import com.data.binding.databinding.ItemCityWeatherBinding;
 import com.data.binding.domain.entities.CityWeather;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import timber.log.Timber;
 
 /**
  * Adapter class to display {@link com.data.binding.domain.entities.CityWeather} items.
@@ -18,14 +20,14 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
     private List<CityWeather> dataset;
 
-    public CityWeatherAdapter(List<CityWeather> dataset) {
-        this.dataset = dataset;
+    public CityWeatherAdapter() {
+        this.dataset = new ArrayList<>();
     }
 
     @Override
     public CityWeatherViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        ItemCityWeatherBinding binding = DataBindingUtil.inflate(inflater, viewType, parent, false);
+        ItemCityWeatherBinding binding = ItemCityWeatherBinding.inflate(inflater, parent, false);
         return new CityWeatherViewHolder(binding);
     }
 
@@ -38,6 +40,12 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
     @Override
     public int getItemCount() {
         return dataset.size() == 0 ? 0 : dataset.size();
+    }
+
+    public void updateDataset(CityWeather cityWeather) {
+        Timber.i("MESA STO UPDATE DATASET size == " + dataset.size());
+        dataset.add(cityWeather);
+        notifyDataSetChanged();
     }
 
     public class CityWeatherViewHolder extends RecyclerView.ViewHolder {

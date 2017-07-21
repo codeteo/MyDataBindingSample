@@ -10,6 +10,9 @@ import com.data.binding.dagger.DaggerNetworkComponent;
 import com.data.binding.dagger.NetworkComponent;
 import com.data.binding.dagger.NetworkModule;
 
+import timber.log.Timber;
+import timber.log.Timber.DebugTree;
+
 /**
  * Application class builds and provides Dagger Components with Application scope.
  */
@@ -22,6 +25,10 @@ public class WeatherApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new DebugTree());
+        }
 
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
