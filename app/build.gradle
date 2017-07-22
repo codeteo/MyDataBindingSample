@@ -50,6 +50,7 @@ final RXBINDINGS_VERSION = '1.0.1'
 final BUTTERKNIFE_VERSION = '8.5.1'
 final BOTTOM_BAR_VERSION = '2.3.1'
 final MOCKITO_VERSION = '1.10.19'
+final LEAK_CANARY_VERSION = '1.5.1'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -72,6 +73,7 @@ dependencies {
     compile "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
     compile 'com.jakewharton.timber:timber:4.5.1'
+    debugCompile "com.squareup.leakcanary:leakcanary-android:${LEAK_CANARY_VERSION}"
 
     // Espresso
     androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO_VERSION}", {

@@ -9,6 +9,7 @@ import com.data.binding.dagger.DaggerApplicationComponent;
 import com.data.binding.dagger.DaggerNetworkComponent;
 import com.data.binding.dagger.NetworkComponent;
 import com.data.binding.dagger.NetworkModule;
+import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;
 import timber.log.Timber.DebugTree;
@@ -25,6 +26,7 @@ public class WeatherApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        LeakCanary.install(this);
 
         if (BuildConfig.DEBUG) {
             Timber.plant(new DebugTree());
