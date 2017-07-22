@@ -1,15 +1,12 @@
 package com.data.binding.main.fragments.main;
 
-import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.data.binding.domain.entities.User;
 import com.data.binding.domain.model.WeatherInteractor;
 import com.data.binding.main.GetUserCallback;
-import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
@@ -53,13 +50,6 @@ public class MainViewModel implements GetUserCallback {
     @Override
     public void onUserNotAvailable() {
         // notify user
-    }
-
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        Picasso.with(view.getContext())
-                .load(imageUrl)
-                .into(view);
     }
 
     private String createIconUrl(String icon) {
