@@ -10,8 +10,6 @@ import com.data.binding.domain.entities.CityWeather;
 import java.util.ArrayList;
 import java.util.List;
 
-import timber.log.Timber;
-
 /**
  * Adapter class to display {@link com.data.binding.domain.entities.CityWeather} items.
  */
@@ -43,9 +41,10 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
     }
 
     public void updateDataset(CityWeather cityWeather) {
-        Timber.i("MESA STO UPDATE DATASET size == " + dataset.size());
-        dataset.add(cityWeather);
-        notifyDataSetChanged();
+        if (!dataset.contains(cityWeather)) {
+            dataset.add(cityWeather);
+            notifyDataSetChanged();
+        }
     }
 
     public class CityWeatherViewHolder extends RecyclerView.ViewHolder {
