@@ -17,7 +17,6 @@ import javax.inject.Inject;
 public class MainViewModel implements GetUserCallback {
 
     private static final String TAG = "VIEW-MODEL";
-    private static final String BASE_ICON_URL = "http://openweathermap.org/img/w/";
 
     public final ObservableField<String> name = new ObservableField<>();
     public final ObservableField<String> description = new ObservableField<>();
@@ -37,7 +36,7 @@ public class MainViewModel implements GetUserCallback {
                 .subscribe(cityWeather -> {
                     name.set(cityWeather.getName());
                     description.set(cityWeather.getWeather().get(0).getDescription());
-                    icon.set(createIconUrl(cityWeather.getWeather().get(0).getIcon()));
+                    icon.set(cityWeather.getWeather().get(0).getIcon());
                 }, throwable -> Log.i(TAG, "call onError : " + throwable.getMessage()));
     }
 
@@ -52,7 +51,4 @@ public class MainViewModel implements GetUserCallback {
         // notify user
     }
 
-    private String createIconUrl(String icon) {
-        return BASE_ICON_URL + icon + ".png";
-    }
 }
