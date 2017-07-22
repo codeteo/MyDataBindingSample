@@ -1,10 +1,9 @@
-package com.data.binding.main;
+package com.data.binding.main.fragments.search;
 
 import com.data.binding.domain.entities.CityWeather;
 import com.data.binding.domain.entities.Main;
 import com.data.binding.domain.entities.Weather;
-import com.data.binding.domain.model.WeatherInteractor;
-import com.data.binding.main.fragments.main.MainViewModel;
+import com.data.binding.domain.model.SearchWeatherInteractor;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,12 +19,12 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 /**
- * Unit tests for {@link MainViewModel} class.
+ * Unit tests for {@link SearchViewModel} class.
  */
-public class ViewModelTest {
+public class SearchViewModelTest {
 
     @Mock
-    private WeatherInteractor weatherInteractor;
+    private SearchWeatherInteractor weatherInteractor;
 
     @Mock
     private Main main;
@@ -33,28 +32,27 @@ public class ViewModelTest {
     @Mock
     private Weather weather;
 
-    private MainViewModel viewModel;
+    private SearchViewModel viewModel;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        viewModel = new MainViewModel(weatherInteractor);
+        viewModel = new SearchViewModel(weatherInteractor);
     }
 
     @Test
-    public void start() throws Exception {
-        when(weatherInteractor.getWeatherByCityName(anyString()))
+    public void search() throws Exception {
+        when(weatherInteractor.getSearchWeatherByCityName(anyString()))
                 .thenReturn(Observable.just(cityWeather()));
 
         // given
         TestSubscriber<CityWeather> testSubscriber = new TestSubscriber<>();
-        weatherInteractor.getWeatherByCityName("Los Angeles").subscribe(testSubscriber);
+        weatherInteractor.getSearchWeatherByCityName("Los Angeles").subscribe(testSubscriber);
 
         // then
         testSubscriber.assertNoErrors();
         testSubscriber.assertReceivedOnNext(singletonList(cityWeather()));
-
     }
 
     private CityWeather cityWeather() {
