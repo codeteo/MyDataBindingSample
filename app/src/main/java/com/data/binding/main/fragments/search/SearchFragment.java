@@ -1,7 +1,9 @@
 package com.data.binding.main.fragments.search;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +22,8 @@ import com.jakewharton.rxbinding.widget.RxTextView;
 
 import javax.inject.Inject;
 
+import rx.subscriptions.CompositeSubscription;
+
 /**
  * A screen where user can search for the weather in various places.
  * Displays a searchBar and queries OpenWeatherMap API for every search.
@@ -33,6 +37,9 @@ public class SearchFragment extends BaseFragment {
     @Inject
     SearchViewModel searchViewModel;
 
+    @NonNull
+    private CompositeSubscription compositeSubscription;
+
     private CityWeatherAdapter adapter;
 
     public static SearchFragment newInstance() {
@@ -42,6 +49,12 @@ public class SearchFragment extends BaseFragment {
         SearchFragment fragment = new SearchFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        compositeSubscription = new CompositeSubscription();
     }
 
     @Override
@@ -67,11 +80,19 @@ public class SearchFragment extends BaseFragment {
 
         setupAdapter(binding);
 
-        searchViewModel
+        compositeSubscription.add(searchViewModel
                 .search(RxTextView.textChanges(binding.etSearch))
-                .subscribe(this::setWeatherList);
+                .subscribe(this::setWeatherList));
 
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (compositeSubscription.hasSubscriptions()) {
+            compositeSubscription.unsubscribe();
+        }
     }
 
     private void setupAdapter(FragmentSearchBinding binding) {

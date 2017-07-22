@@ -10,6 +10,8 @@ import com.data.binding.main.GetUserCallback;
 
 import javax.inject.Inject;
 
+import rx.Subscription;
+
 /**
  * ViewModel layer between View and Model. Binds to the View and reacts to events.
  */
@@ -17,6 +19,8 @@ import javax.inject.Inject;
 public class MainViewModel implements GetUserCallback {
 
     private static final String TAG = "VIEW-MODEL";
+
+    private Subscription subscription;
 
     public final ObservableField<String> name = new ObservableField<>();
     public final ObservableField<String> description = new ObservableField<>();
@@ -31,7 +35,7 @@ public class MainViewModel implements GetUserCallback {
     }
 
     public void start() {
-        weatherInteractor
+        subscription = weatherInteractor
                 .getWeatherByCityName("Thessaloniki")
                 .subscribe(cityWeather -> {
                     name.set(cityWeather.getName());
@@ -49,6 +53,12 @@ public class MainViewModel implements GetUserCallback {
     @Override
     public void onUserNotAvailable() {
         // notify user
+    }
+
+    public void unBind() {
+        if (!subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
     }
 
 }

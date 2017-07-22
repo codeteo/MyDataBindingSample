@@ -34,6 +34,12 @@ public class MainFragment extends BaseFragment {
         return fragment;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        viewModel.unBind();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
