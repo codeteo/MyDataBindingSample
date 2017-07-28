@@ -74,6 +74,7 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
     compile 'com.jakewharton.timber:timber:4.5.1'
     debugCompile "com.squareup.leakcanary:leakcanary-android:${LEAK_CANARY_VERSION}"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${LEAK_CANARY_VERSION}"
 
     // Espresso
     androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO_VERSION}", {
