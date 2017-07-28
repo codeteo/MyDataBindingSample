@@ -6,7 +6,7 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
-  before_install:
+before_install:
     - mkdir "$ANDROID_HOME/licenses" || true
     - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 android:
@@ -20,3 +20,7 @@ android:
     - extra-android-support
     - extra-android-m2repository
     - extra-google-m2repository
+
+licenses:
+    - 'android-sdk-license-c81a61d9'
+    - 'android-sdk-license-.+'
