@@ -1,4 +1,4 @@
-language: android
+anguage: android
 jdk: oraclejdk8
 sudo: false
 cache:
@@ -11,8 +11,6 @@ before_install:
     - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 android:
   components:
-    # Uncomment the lines below if you want to
-    # use the latest revision of Android SDK Tools
     - tools
     - platform-tools
     - build-tools-25.0.3
@@ -24,3 +22,7 @@ android:
 licenses:
     - 'android-sdk-license-c81a61d9'
     - 'android-sdk-license-.+'
+
+script:
+    - ./gradlew clean build
+
