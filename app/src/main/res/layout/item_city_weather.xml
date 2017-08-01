@@ -5,12 +5,12 @@
     </data>
 
     <LinearLayout android:orientation="vertical"
-        android:layout_width="match_parent" android:layout_height="wrap_content">
+        android:layout_width="match_parent" android:layout_height="128dp">
 
         <TextView
             android:id="@+id/tv_name"
             android:text="@{cityWeather.name}"
-            android:layout_width="match_parent" android:layout_height="48dp" />
+            android:layout_width="match_parent" android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tv_description"
@@ -22,6 +22,13 @@
             bind:imageUrl="@{cityWeather.weather.get(0).icon}"
             android:contentDescription="@string/content_description_weather_icon"
             android:layout_width="50dp" android:layout_height="50dp" />
+
+        <ImageView
+            android:id="@+id/city_weather_favorite_imageview"
+            android:layout_width="match_parent" android:layout_height="48dp"
+            android:layout_gravity="center" android:background="@color/colorAccent"
+            android:paddingBottom="6dp" android:paddingTop="6dp"
+            android:src="@drawable/ic_favorite_border_white_24dp" android:contentDescription="@string/item_search_favorite_icon_content_description" />
 
     </LinearLayout>
 

@@ -12,6 +12,7 @@
 
     <!-- search screen start-->
     <string name="search_city_hint_edittext">Search City</string>
+    <string name="item_search_favorite_icon_content_description" translatable="false">Favorite Icon</string>
     <!-- search screen end-->
 
 </resources>
