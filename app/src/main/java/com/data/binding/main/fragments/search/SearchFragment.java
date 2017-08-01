@@ -5,8 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import com.data.binding.domain.entities.CityWeather;
 import com.data.binding.main.adapter.CityWeatherAdapter;
 import com.data.binding.main.fragments.BaseFragment;
 import com.data.binding.main.fragments.search.dagger.DaggerSearchFragmentComponent;
+import com.data.binding.utils.ItemOffsetDecoration;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
 import javax.inject.Inject;
@@ -99,13 +99,9 @@ public class SearchFragment extends BaseFragment {
         adapter = new CityWeatherAdapter();
         binding.rvSearch.setAdapter(adapter);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        binding.rvSearch.setLayoutManager(layoutManager);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(),
-                layoutManager.getOrientation());
-        binding.rvSearch.addItemDecoration(dividerItemDecoration);
+        ItemOffsetDecoration itemOffsetDecoration = new ItemOffsetDecoration(getContext(), R.dimen.item_offset);
+        binding.rvSearch.addItemDecoration(itemOffsetDecoration);
+        binding.rvSearch.setLayoutManager((new GridLayoutManager(getContext(), 2)));
     }
 
     private void setWeatherList(CityWeather cityWeather) {

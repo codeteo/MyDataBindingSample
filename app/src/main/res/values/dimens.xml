@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="item_offset">4dp</dimen>
+    <dimen name="bottom_navigation_view_height">56dp</dimen>
+
+</resources>
