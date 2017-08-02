@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:bind="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="com.data.binding.utils.CelsiusConverter"/>
         <variable name="cityWeather" type="com.data.binding.domain.entities.CityWeather"/>
     </data>
 
@@ -37,7 +38,7 @@
                 <TextView
                     android:id="@+id/tv_temperature"
                     android:layout_toRightOf="@id/iv_weather_icon" android:layout_toEndOf="@id/iv_weather_icon"
-                    android:text="@{String.valueOf(cityWeather.main.temp)}"
+                    android:text="@{String.valueOf(CelsiusConverter.convert(cityWeather.main.temp))}"
                     android:gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="match_parent" android:layout_height="match_parent" />
