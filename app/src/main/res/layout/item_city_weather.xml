@@ -3,6 +3,7 @@
     <data>
         <import type="com.data.binding.utils.CelsiusConverter"/>
         <variable name="cityWeather" type="com.data.binding.domain.entities.CityWeather"/>
+        <variable name="presenter" type="com.data.binding.main.fragments.search.SearchPresenter"/>
     </data>
 
     <android.support.v7.widget.CardView
@@ -47,6 +48,8 @@
 
             <ImageView
                 android:id="@+id/city_weather_favorite_imageview"
+                android:onClick="@{(view) -> presenter.onFavoriteClick(view, cityWeather)}"
+                android:clickable="true"
                 android:layout_width="match_parent" android:layout_height="48dp"
                 android:layout_gravity="center" android:background="@color/colorAccent"
                 android:paddingBottom="4dp" android:paddingTop="4dp" android:scaleType="center"

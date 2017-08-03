@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.data.binding.databinding.ItemCityWeatherBinding;
 import com.data.binding.domain.entities.CityWeather;
+import com.data.binding.main.fragments.search.SearchPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
         public void bind(CityWeather cityWeather) {
             binding.setCityWeather(cityWeather);
+            binding.setPresenter(new SearchPresenter());
             binding.executePendingBindings();
         }
     }
