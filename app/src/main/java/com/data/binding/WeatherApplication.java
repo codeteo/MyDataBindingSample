@@ -6,7 +6,9 @@ import android.app.Application;
 import com.data.binding.dagger.ApplicationComponent;
 import com.data.binding.dagger.ApplicationModule;
 import com.data.binding.dagger.DaggerApplicationComponent;
+import com.data.binding.dagger.DaggerDataComponent;
 import com.data.binding.dagger.DaggerNetworkComponent;
+import com.data.binding.dagger.DataComponent;
 import com.data.binding.dagger.NetworkComponent;
 import com.data.binding.dagger.NetworkModule;
 import com.squareup.leakcanary.LeakCanary;
@@ -22,6 +24,7 @@ public class WeatherApplication extends Application {
 
     private static ApplicationComponent applicationComponent;
     private static NetworkComponent networkComponent;
+    private static DataComponent dataComponent;
 
     @Override
     public void onCreate() {
@@ -41,6 +44,10 @@ public class WeatherApplication extends Application {
                 .networkModule(new NetworkModule())
                 .build();
 
+        dataComponent = DaggerDataComponent.builder()
+                .applicationComponent(applicationComponent)
+                .build();
+
     }
 
     public static ApplicationComponent getApplicationComponent() {
@@ -49,6 +56,10 @@ public class WeatherApplication extends Application {
 
     public static NetworkComponent getNetworkComponent() {
         return networkComponent;
+    }
+
+    public static DataComponent getDataComponent() {
+        return dataComponent;
     }
 
 }
